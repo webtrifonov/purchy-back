@@ -15,8 +15,8 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-    "seed": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed"
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js --config ormconfig.ts",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert"
   }
 }
