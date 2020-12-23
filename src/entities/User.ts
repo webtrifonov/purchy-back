@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany
 import { Post } from './Post';
 import { Role } from './Role';
 
-@Entity()
+@Entity('users')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
