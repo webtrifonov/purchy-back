@@ -1,8 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn  } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn  } from 'typeorm';
 import { User } from './User';
 
 @Entity('posts')
-export class Post {
+export class Post extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
@@ -12,12 +12,24 @@ export class Post {
   @Column()
   image: string
 
-  @ManyToOne((type) => User, (user) => user.name)
+  @ManyToOne((type) => User, (user) => user.posts)
+  @JoinColumn({
+    name: 'user_id',
+    referencedColumnName: 'id',
+  })
   user: User
 
-  @Column()
-  created_at: string
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'created_at',
+  })
+  created_at: Date
 
-  @Column()
-  updated_at: string
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'updated_at',
+  })
+  updated_at: Date
 }

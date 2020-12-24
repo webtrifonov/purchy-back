@@ -1,9 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, CreateDateColumn} from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, CreateDateColumn, BaseEntity, JoinTable} from 'typeorm';
 import { Post } from './Post';
 import { Role } from './Role';
 
 @Entity('users')
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,24 +14,29 @@ export class User {
   email: string;
 
   @Column()
-  image: string;
-
-  @Column()
   password: string;
 
-  @Column()
-  postId: number;
-
-  @OneToMany(() => Post, (post) => post)
+  @OneToMany(() => Post, (post) => post.user)
   posts: Post[]
 
-  @ManyToMany(() => Role)
+  @ManyToMany(() => Role, (role) => role.users)
+  @JoinTable({
+    name: 'user_roles',
+    joinColumn: {
+      name: 'user_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'role_id',
+      referencedColumnName: 'id',
+    }
+  })
   roles: Role[]
 
   @CreateDateColumn({ type: 'timestamptz' })
-  createdAt: Date;
+  createdAt: Date | string;
 
   @CreateDateColumn({ type: 'timestamptz' })
-  updatedAt: Date;
+  updatedAt: Date | string;
 
 }

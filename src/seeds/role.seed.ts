@@ -1,4 +1,4 @@
-export const RolesSeed1 = [
+export const RolesSeed = [
   {
     title: 'admin',
   },{
@@ -10,7 +10,7 @@ export const RolesSeed1 = [
   }
 ]
 
-export const RolesSeed = [
+export const RolesSeedId = [
   {
     id: 1,
     title: 'admin',
