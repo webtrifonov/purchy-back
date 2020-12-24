@@ -1,7 +1,7 @@
 import {getCustomRepository, MigrationInterface, QueryRunner} from "typeorm";
 import { Post } from '../entities/Post';
-import { userRepository } from '../repositories/UserRepository';
-import { PostRepository } from '../repositories/PostRepository';
+import { userRepository } from '../repositories/User.repository';
+import { PostRepository } from '../repositories/Post.repository';
 
 export class SeedPost1000000000003 implements MigrationInterface {
 
