@@ -1,4 +1,3 @@
-import { getCustomRepository } from 'typeorm';
 import { EntityRepository, Repository } from 'typeorm';
 import { Post } from '../entities/Post';
 
