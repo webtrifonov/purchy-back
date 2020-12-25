@@ -1,11 +1,13 @@
 import {getCustomRepository, MigrationInterface, QueryRunner} from "typeorm";
 import { Post } from '../entities/Post';
-import { userRepository } from '../repositories/User.repository';
-import { PostRepository } from '../repositories/Post.repository';
+import UserRepository from '../repositories/User.repository';
+import PostRepository from '../repositories/Post.repository';
 
 export class SeedPost1000000000003 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+      const userRepository = getCustomRepository(UserRepository);
+
       const user = await userRepository.findOne({name: 'Dima3'});
 
       const postRepository = getCustomRepository(PostRepository);

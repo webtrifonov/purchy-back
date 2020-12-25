@@ -4,6 +4,7 @@
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
     "@types/node": "^8.0.29",
+    "nodemon": "^2.0.6",
     "ts-node": "^3.3.0",
     "typescript": "3.3.3333"
   },
@@ -16,7 +17,8 @@
     "typeorm": "0.2.29"
   },
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "npx nodemon",
+    "server": "ts-node src/app.ts",
     "typeorm": "ts-node ./node_modules/typeorm/cli.js --config ormconfig.ts",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js --config ormconfig.ts migration:run",
     "migration:revert": "ts-node ./node_modules/typeorm/cli.js --config ormconfig.ts migration:revert"
