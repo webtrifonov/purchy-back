@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+const env = dotenv.config({path: './src/.env'}).parsed;
+
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import 'reflect-metadata';
@@ -10,4 +13,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', apiRoutes);
 
 
-app.listen(3000, () => console.log(`Port ${3000}`));
+app.listen(env.PORT, () => console.log(`Port ${env.PORT}`));
