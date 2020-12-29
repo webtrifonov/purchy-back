@@ -36,14 +36,14 @@ export class User extends BaseEntity {
   @Column('timestamp', {
     nullable: true,
     default: () => 'NULL',
-    name: 'created_at',
+    name: 'createdAt',
   })
   createdAt: Date | string;
 
   @Column('timestamp', {
     nullable: true,
     default: () => 'NULL',
-    name: 'updated_at',
+    name: 'updatedAt',
   })
   updatedAt: Date | string;
 
