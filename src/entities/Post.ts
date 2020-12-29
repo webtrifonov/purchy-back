@@ -12,7 +12,7 @@ export class Post extends BaseEntity {
   @Column()
   image: string
 
-  @ManyToOne((type) => User, (user) => user.posts)
+  @ManyToOne((type) => User, (user) => user.id)
   @JoinColumn({
     name: 'user_id',
     referencedColumnName: 'id',
@@ -24,12 +24,12 @@ export class Post extends BaseEntity {
     default: () => 'NULL',
     name: 'created_at',
   })
-  created_at: Date
+  createdAt: Date
 
   @Column('timestamp', {
     nullable: true,
     default: () => 'NULL',
     name: 'updated_at',
   })
-  updated_at: Date
+  updatedAt: Date
 }

@@ -18,6 +18,7 @@ router.post('/createRole',
       },
     }
   }),
-createRole);
+  createRole
+);
 
 export default router;

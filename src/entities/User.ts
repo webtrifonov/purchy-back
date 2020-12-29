@@ -33,10 +33,18 @@ export class User extends BaseEntity {
   })
   roles: Role[]
 
-  @CreateDateColumn({ type: 'timestamptz' })
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'created_at',
+  })
   createdAt: Date | string;
 
-  @CreateDateColumn({ type: 'timestamptz' })
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'updated_at',
+  })
   updatedAt: Date | string;
 
 }

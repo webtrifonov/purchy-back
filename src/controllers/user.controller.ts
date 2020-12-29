@@ -19,3 +19,12 @@ export const users = async (req, res) => {
     users,
   })
 }
+export const createUser = async (req, res) => {
+  const userRepository = getCustomRepository(UserRepository);
+  const newUser = await userRepository.createUser(req.body);
+
+  res.status(200).json({
+    success: 1,
+    users,
+  })
+}

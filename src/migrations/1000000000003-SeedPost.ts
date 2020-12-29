@@ -1,7 +1,7 @@
 import {getCustomRepository, MigrationInterface, QueryRunner} from "typeorm";
 import { Post } from '../entities/Post';
-import UserRepository from '../repositories/User.repository';
-import PostRepository from '../repositories/Post.repository';
+import UserRepository from '../repositories/user.repository';
+import PostRepository from '../repositories/post.repository';
 
 export class SeedPost1000000000003 implements MigrationInterface {
 
@@ -15,8 +15,8 @@ export class SeedPost1000000000003 implements MigrationInterface {
       post.title = 'Post 1';
       post.image = 'http://lorempixel.com';
       post.user = user;
-      post.created_at = new Date();
-      post.updated_at = new Date();
+      post.createdAt = new Date();
+      post.updatedAt = new Date();
       await postRepository.save(post);
       // const dima = getCustomRepository();
     }
