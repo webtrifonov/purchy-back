@@ -1,12 +1,12 @@
 import * as express from 'express';
 const router = express.Router();
 
+import shoppingRoutes from './shopping.routes';
 import userRoutes from './user.routes';
-import roleRoutes from './role.routes';
-import postRoutes from './post.routes';
+import productRoutes from './product.routes';
 
-router.use('/post', postRoutes);
+router.use('/shopping', shoppingRoutes);
 router.use('/user', userRoutes);
-router.use('/role', roleRoutes);
+router.use('/product', productRoutes);
 
 export default router;

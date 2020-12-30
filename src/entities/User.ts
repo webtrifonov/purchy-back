@@ -1,50 +1,57 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, OneToMany, CreateDateColumn, BaseEntity, JoinTable} from 'typeorm';
-import { Post } from './Post';
-import { Role } from './Role';
+import { Shopping } from './Shopping';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeUpdate, BeforeInsert, OneToMany, Index } from 'typeorm';
 
-@Entity('users')
-export class User extends BaseEntity {
+@Entity({
+  name: 'users'
+})
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    nullable: true,
+    type: 'varchar',
+  })
   name: string;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255
+  })
   password: string;
 
-  @OneToMany(() => Post, (post) => post.user)
-  posts: Post[]
+  @OneToMany(() => Shopping, (shopping) => shopping.user)
+  shoppings: Shopping[]
 
-  @ManyToMany(() => Role, (role) => role.users)
-  @JoinTable({
-    name: 'user_roles',
-    joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'role_id',
-      referencedColumnName: 'id',
-    }
+  @Column('timestamp', {
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+    name: 'created_at',
   })
-  roles: Role[]
+  createdAt: Date;
 
   @Column('timestamp', {
     nullable: true,
     default: () => 'NULL',
-    name: 'createdAt',
+    name: 'updated_at',
   })
-  createdAt: Date | string;
+  updatedAt: Date;
 
   @Column('timestamp', {
     nullable: true,
     default: () => 'NULL',
-    name: 'updatedAt',
+    name: 'deleted_at',
   })
-  updatedAt: Date | string;
-
+  deletedAt: Date;
+  @BeforeInsert()
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
 }

@@ -4,8 +4,8 @@ module.exports = {
   "port": 5432,
   "username": "postgres",
   "password": "postgres",
-  "database": "try_type_orm",
-  "synchronize": false,
+  "database": "purch",
+  "synchronize": true,
   "logging": false,
   "entities": [
     "src/entities/**/*.ts"
