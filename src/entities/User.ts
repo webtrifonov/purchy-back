@@ -1,5 +1,6 @@
+import * as bcryptjs from 'bcryptjs';
 import { Shopping } from './Shopping';
-import { Column, Entity, PrimaryGeneratedColumn, BeforeUpdate, BeforeInsert, OneToMany, Index } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeUpdate, BeforeInsert, OneToMany } from 'typeorm';
 
 @Entity({
   name: 'users'
@@ -48,10 +49,16 @@ export class User {
     name: 'deleted_at',
   })
   deletedAt: Date;
+
   @BeforeInsert()
+  beforeInsert() {
+    console.log(this.password)
+    this.password = bcryptjs.hashSync(this.password, 6);
+    this.createdAt = new Date();
+  }
   @BeforeUpdate()
   beforeUpdate() {
-    this.createdAt = new Date();
+    this.password = bcryptjs.hashSync(this.password, 6);
     this.updatedAt = new Date();
   }
 }

@@ -11,7 +11,8 @@ module.exports = {
     "src/entities/**/*.ts"
   ],
   "migrations": [
-    "src/migrations/**/*.ts"
+    "src/migrations/**/*.ts",
+    "src/seeds/**/*.ts",
   ],
   "subscribers": [
     "src/subscriber/**/*.ts"

@@ -1,4 +1,4 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Product } from './Product';
 
 @Entity({
@@ -15,4 +15,34 @@ export class Group {
 
   @OneToMany(() => Product, (product) => product.group)
   products: Product[]
+
+  @Column('timestamp', {
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+    name: 'created_at',
+  })
+  createdAt: Date;
+
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'updated_at',
+  })
+  updatedAt: Date;
+
+  @Column('timestamp', {
+    nullable: true,
+    default: () => 'NULL',
+    name: 'deleted_at',
+  })
+  deletedAt: Date;
+
+  @BeforeInsert()
+  beforeInsert() {
+    this.createdAt = new Date();
+  }
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.updatedAt = new Date();
+  }
 }

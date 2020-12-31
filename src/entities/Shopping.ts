@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne, Index } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne, Index, BeforeInsert, BeforeUpdate } from "typeorm";
 import { Product } from './Product';
 import { User } from './User';
 
@@ -52,4 +52,13 @@ export class Shopping {
     name: 'deleted_at',
   })
   deletedAt: Date;
+
+  @BeforeInsert()
+  beforeInsert() {
+    this.createdAt = new Date();
+  }
+  @BeforeUpdate()
+  beforeUpdate() {
+    this.updatedAt = new Date();
+  }
 }

@@ -1,9 +1,9 @@
 import * as express from 'express';
-import { getShoppings } from '../controllers/shopping.controller';
+import { getUser } from '../controllers/user.controller';
 
 const app = express();
 const router = express.Router();
 
-router.post('/get_shoppings', getShoppings);
+router.get('/get_user', getUser);
 
 export default router;
