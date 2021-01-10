@@ -10,5 +10,4 @@ router.use('/shopping', shoppingRoutes);
 router.use('/user', userRoutes);
 router.use('/product', productRoutes);
 router.use('/group', groupRoutes);
-
 export default router;

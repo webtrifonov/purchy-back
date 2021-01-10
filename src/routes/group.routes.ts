@@ -1,7 +1,6 @@
 import * as express from 'express';
 import { createGroup, getGroups } from '../controllers/group.controller';
 
-const app = express();
 const router = express.Router();
 
 router.get('/groups', getGroups);

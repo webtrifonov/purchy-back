@@ -3,8 +3,8 @@ module.exports = {
   "host": "localhost",
   "port": 5432,
   "username": "postgres",
-  "password": "postgres",
-  "database": "purch",
+  "password": "123456",
+  "database": "purchy",
   "synchronize": true,
   "logging": false,
   "entities": [

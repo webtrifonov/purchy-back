@@ -1,4 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne, Index, BeforeInsert, BeforeUpdate } from "typeorm";
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+  ManyToOne,
+  Index,
+  BeforeInsert,
+  BeforeUpdate,
+  DeleteDateColumn
+} from 'typeorm';
 import { Product } from './Product';
 import { User } from './User';
 
@@ -45,13 +56,6 @@ export class Shopping {
     name: 'updated_at',
   })
   updatedAt: Date;
-
-  @Column('timestamp', {
-    nullable: true,
-    default: () => 'NULL',
-    name: 'deleted_at',
-  })
-  deletedAt: Date;
 
   @BeforeInsert()
   beforeInsert() {
