@@ -18,7 +18,6 @@ export class SeedRole1000000000001 implements MigrationInterface {
       newUser1.updatedAt = new Date();
       await userRepository.save(newUser1);
 
-      console.log('newUser1', newUser1);
       await userRepository.save(newUser1);
 
       const role = new Role();

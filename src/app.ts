@@ -15,8 +15,7 @@ app.use(express.static('./public'));
 
 // app.use('/', (req, res) => res.json({works: true}));
 app.use('/api', apiRoutes);
-
+app.get('/', (req, res) => {
+  res.json({works: true});
+});
 app.listen(env.PORT, () => console.log(`Port ${env.PORT}`));
-
-
-

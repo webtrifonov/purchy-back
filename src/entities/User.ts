@@ -52,7 +52,6 @@ export class User {
 
   @BeforeInsert()
   beforeInsert() {
-    console.log(this.password)
     this.password = bcryptjs.hashSync(this.password, 6);
     this.createdAt = new Date();
   }
