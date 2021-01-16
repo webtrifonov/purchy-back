@@ -1,46 +1,28 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  OneToMany,
-  JoinColumn,
-  ManyToOne,
-  Index,
-  BeforeInsert,
-  BeforeUpdate,
-} from 'typeorm';
-import { Product } from './Product';
+import { Column, Entity, PrimaryGeneratedColumn, BeforeUpdate, BeforeInsert, JoinColumn, ManyToOne } from 'typeorm';
 import { User } from './User';
 
 @Entity({
-  name: 'shoppings',
+  name: 'tokens'
 })
-@Index(['user'])
-export class Shopping {
+export class Token {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    type: 'varchar',
-  })
-  title: string;
+  @Column({ nullable: true })
+  refreshJWTToken: string;
 
-  @ManyToOne(() => User, (user) => user.shoppings, {
-    onUpdate: 'CASCADE',
+  @Column({ nullable: true })
+  refreshJWTTokenExpiredDate: Date;
+
+  @ManyToOne((type) => User, (user) => user.tokens, {
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   @JoinColumn({
     name: 'user_id',
     referencedColumnName: 'id',
   })
   user: User;
-
-  @OneToMany(() => Product, (product) => product.shopping)
-  @JoinColumn({
-    name: 'shopping_id',
-    referencedColumnName: 'id',
-  })
-  products: Product[];
 
   @Column('timestamp', {
     nullable: false,

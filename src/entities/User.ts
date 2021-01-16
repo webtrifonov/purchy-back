@@ -1,6 +1,7 @@
 import * as bcryptjs from 'bcryptjs';
 import { Shopping } from './Shopping';
 import { Column, Entity, PrimaryGeneratedColumn, BeforeUpdate, BeforeInsert, OneToMany } from 'typeorm';
+import { Token } from './Token';
 
 @Entity({
   name: 'users'
@@ -21,13 +22,24 @@ export class User {
   email: string;
 
   @Column({
+    name: 'email_confirmation_token',
+    unique: true,
+    type: 'varchar',
+    nullable: true,
+  })
+  emailConfirmationToken: string;
+
+  @Column({
     type: 'varchar',
     length: 255
   })
   password: string;
 
   @OneToMany(() => Shopping, (shopping) => shopping.user)
-  shoppings: Shopping[]
+  shoppings: Shopping[];
+
+  @OneToMany(() => Token, (token) => token.user)
+  tokens: Token[];
 
   @Column('timestamp', {
     nullable: false,
@@ -52,12 +64,12 @@ export class User {
 
   @BeforeInsert()
   beforeInsert() {
-    this.password = bcryptjs.hashSync(this.password, 6);
+    // this.password = bcryptjs.hashSync(this.password, 6);
     this.createdAt = new Date();
   }
   @BeforeUpdate()
   beforeUpdate() {
-    this.password = bcryptjs.hashSync(this.password, 6);
+    // this.password = bcryptjs.hashSync(this.password, 6);
     this.updatedAt = new Date();
   }
 }

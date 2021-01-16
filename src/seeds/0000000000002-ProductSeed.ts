@@ -7,13 +7,13 @@ export class ProductSeed0000000000002 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
       const productRepo = getCustomRepository(ProductRepository);
       const shoppingRepo = getCustomRepository(ShoppingRepository);
-      const newUser1 = await productRepo.createOne({
+      const newUser1 = await productRepo.createOneWithGroup({
         title: 'банан',
         completed: false,
         shoppingId: 2,
         groupId: null
       });
-      const newUser2 = await productRepo.createOne({
+      const newUser2 = await productRepo.createOneWithGroup({
         title: 'сироп',
         completed: true,
         shoppingId: 2,

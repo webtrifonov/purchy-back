@@ -24,8 +24,6 @@ const checkFileType = (req, file, cb) => {
 export const imageUpload = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      console.log('destination');
-      // console.log('req', req);
       if (!fs.existsSync(constants.PATH_TO_UPLOADS)) {
         fs.mkdirSync(constants.PATH_TO_UPLOADS);
       }
@@ -41,6 +39,7 @@ export const imageUpload = multer({
   },
   fileFilter: checkFileType,
 }).single('image');
+
 export const uploadImage = async (req, res, next) => {
   imageUpload(req, res, (error) => {
     if (error instanceof multer.MulterError) {

@@ -21,7 +21,6 @@ export const validateUpdateShopping = checkSchema({
     },
   },
   title: {
-    in: ['body'],
     exists: {
       errorMessage: 'Title must be not empty',
     },
